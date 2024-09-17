@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono
 @RequestMapping("/api/search")
 class SearchController(private val musicFacade: MusicFacade) {
 
-    @GetMapping("/")
+    @GetMapping("/artists")
     fun search(term: String): Mono<SearchResult> {
         return musicFacade.getArtists(term)
     }
