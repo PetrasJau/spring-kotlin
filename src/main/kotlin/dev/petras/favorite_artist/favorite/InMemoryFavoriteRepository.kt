@@ -15,7 +15,7 @@ class InMemoryFavoriteRepository: FavoriteRepository {
     override fun addFavorite(userId: String, artistId: Int): Mono<Int> {
         favorites[userId] = favorites[userId] ?: mutableSetOf()
         favorites[userId]?.add(artistId)
-        return Mono.just(artistId);
+        return Mono.just(artistId)
     }
 
     override fun removeFavorite(userId: String, artistId: Int): Mono<Int> {

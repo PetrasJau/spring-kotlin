@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 
 @Service
-class ItunesMusicService(private val builder: WebClient.Builder) : MusicService {
+class ItunesMusicService(builder: WebClient.Builder) : MusicService {
     // this is used as a workaround for itunes returning incompatible content type
     private val contentTypeReplacer = ExchangeFilterFunction.ofResponseProcessor { response ->
         Mono.just(
@@ -24,7 +24,7 @@ class ItunesMusicService(private val builder: WebClient.Builder) : MusicService 
     }
     private var webClient: WebClient =
         builder.baseUrl("https://itunes.apple.com/").filter(contentTypeReplacer)
-            .build();
+            .build()
 
     override fun getArtists(term: String): Mono<SearchResult> {
         return webClient.get().uri("search?entity=allArtist&term=$term")
